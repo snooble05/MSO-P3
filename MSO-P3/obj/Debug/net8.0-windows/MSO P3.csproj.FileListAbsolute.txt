@@ -1,0 +1,15 @@
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\bin\Debug\net8.0-windows\MSO P3.exe
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\bin\Debug\net8.0-windows\MSO P3.deps.json
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\bin\Debug\net8.0-windows\MSO P3.runtimeconfig.json
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\bin\Debug\net8.0-windows\MSO P3.dll
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\bin\Debug\net8.0-windows\MSO P3.pdb
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.AssemblyInfoInputs.cache
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.AssemblyInfo.cs
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.csproj.CoreCompileInputs.cache
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.sourcelink.json
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.dll
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\refint\MSO P3.dll
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.pdb
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.genruntimeconfig.cache
+C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\ref\MSO P3.dll

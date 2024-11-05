@@ -5532,11 +5532,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
+      "projectUniqueName": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
       "projectName": "Test MSO P3",
-      "projectPath": "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
+      "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
       "packagesPath": "C:\\Users\\jaspe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\Test MSO P3\\obj\\",
+      "outputPath": "C:\\Users\\jaspe\\Source\\Repos\\MSO-P3\\Test MSO P3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5553,8 +5553,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\MSO-P3\\MSO P3.csproj": {
-              "projectPath": "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\MSO-P3\\MSO P3.csproj"
+            "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\MSO-P3\\MSO P3.csproj": {
+              "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\MSO-P3\\MSO P3.csproj"
             }
           }
         }

@@ -13,14 +13,34 @@ namespace MSO_P3
 	{
 		private Grid _grid;
 		private MenuStrip _menu;
+		private CommandField _commandField;
 
 		public Window()
 		{
+			this.Size = new Size(1600, 860);
+
 			_menu = new MenuStrip();
-			_menu.Visible = false;
+			makeFileMenu();
 			this.Controls.Add( _menu );
-			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 5, new List<Point>());
-			this._grid.Size = new Size(this.ClientSize.Width / 2, this.ClientSize.Height / 2);
+
+			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { new Point (2, 2)});
+			_grid.MaximumSize = new Size(770, 770);
+			this.Controls.Add(_grid);
+
+			_commandField = new CommandField();
+			_commandField.Location = new Point(10, 30);
+			this.Controls.Add(_commandField);
+
+			this.Resize += resize;
+			this.resize(null!, null!);
+		}
+
+		private void resize(object o, EventArgs ea)
+		{
+			_grid.Location = new Point(this.ClientSize.Width / 2, 30);
+			_grid.Size = new Size((this.ClientSize.Width / 2) - 10, this.ClientSize.Height - 30);
+			_grid.Invalidate();
+			_commandField.Size = new Size((this.ClientSize.Width / 2) - 10, this.ClientSize.Height / 2);
 		}
 
 		private void makeFileMenu()

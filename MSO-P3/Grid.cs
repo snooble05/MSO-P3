@@ -88,50 +88,44 @@ namespace MSO_P3
 
 		private void draw(object o, PaintEventArgs pea)
 		{
-			this.gridUI.draw(pea.Graphics);
+			this.gridUI.draw(pea);
 		}
 	}
 
 	public class GridUI
 	{
-		public Bitmap Bitmap;
 		private int _gridSize;
 		private Character _character;
 		private List<Point> _blockedCells;
 		private Point? _endPoint;
 
-		public Graphics BitmapGraphics
-		{
-			get { return Graphics.FromImage(Bitmap); }
-		}
-
 		public GridUI(Character character, int gridSize, List<Point> blockedCells, Point? endPoint)
 		{
-			this.Bitmap = new Bitmap(1, 1);
 			_character = character;
 			_blockedCells = blockedCells;
 			_endPoint = endPoint;
 			_gridSize = gridSize;
 		}
 
-		public void draw(Graphics g)
+		public void draw(PaintEventArgs pea)
 		{
-			int cellSize = this.Bitmap.Width / this._gridSize;
-			Graphics gr = this.BitmapGraphics;
-			gr.FillRectangle(Brushes.White, 0, 0, this.Bitmap.Width, this.Bitmap.Height);
+			Graphics g = pea.Graphics;
+			int drawSize = Math.Min(pea.ClipRectangle.Width, pea.ClipRectangle.Height);
+			drawSize = (drawSize / _gridSize) * _gridSize;
+			int cellSize = drawSize / _gridSize;
+			g.FillRectangle(Brushes.White, 0, 0, drawSize, drawSize);
 			for(int i = 0; i < this._gridSize; i++)
 			{
 				for (int j = 0; j < this._gridSize; j++)
 				{
-					gr.DrawRectangle(Pens.Black, cellSize * i, cellSize * j, this.Bitmap.Width, this.Bitmap.Height);
+					g.DrawRectangle(Pens.Black, cellSize * i, cellSize * j, cellSize, cellSize);
 				}
 			}
-			gr.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y) + 1 * cellSize, cellSize - 2, cellSize - 2);
+			g.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
 			foreach (Point cell in _blockedCells)
 			{
-				gr.FillRectangle(Brushes.Orange, (cell.X * cellSize) + 1, (cell.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
+				g.FillRectangle(Brushes.Orange, (cell.X * cellSize) + 1, (cell.Y * cellSize) + 1, cellSize - 1, cellSize - 1);
 			}
-			g.DrawImage(this.Bitmap, 0, 0);
 		}
 	}
 }

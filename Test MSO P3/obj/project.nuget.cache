@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2P0r9hlqyGkspDxA4Ht8hLOasPRkehJsH6C5quazWI9UBXZZtlMbvQ3BUmsLoBNXBsqDdlkuGUS/tGn6lNDHJg==",
+  "dgSpecHash": "8HvhIrjWVsz4HF+Sa6Q3H1sUmwICSWqVuSNGFEo6U2kEMQzt75I3YiNc2xjlmY3lNF0BW25C+Yjn1o7a+4BD4A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jaspe\\OneDrive - Universiteit Utrecht\\Jaar 2\\Modelleren en Systeemontwikkeling\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
+  "projectFilePath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jaspe\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\jaspe\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
