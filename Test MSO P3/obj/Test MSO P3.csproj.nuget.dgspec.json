@@ -74,7 +74,7 @@
         "projectName": "Test MSO P3",
         "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
         "packagesPath": "C:\\Users\\jaspe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaspe\\Source\\Repos\\MSO-P3\\Test MSO P3\\obj\\",
+        "outputPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",

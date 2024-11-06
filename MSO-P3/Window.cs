@@ -14,22 +14,33 @@ namespace MSO_P3
 		private Grid _grid;
 		private MenuStrip _menu;
 		private CommandField _commandField;
+		private Label _output;
 
 		public Window()
 		{
 			this.Size = new Size(1600, 860);
+			this.BackColor = Color.Azure;
 
 			_menu = new MenuStrip();
+			_menu.BackColor = Color.LightBlue;
 			makeFileMenu();
 			this.Controls.Add( _menu );
 
-			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { new Point (2, 2)});
+			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { new Point (2, 2)}, new Point(3, 3));
 			_grid.MaximumSize = new Size(770, 770);
 			this.Controls.Add(_grid);
 
 			_commandField = new CommandField();
 			_commandField.Location = new Point(10, 30);
 			this.Controls.Add(_commandField);
+
+			_output = new Label();
+			_output.BackColor = Color.PaleTurquoise;
+			_output.ForeColor = Color.Black;
+			_output.Text = "Output: \n";
+			_output.Font = new Font("Lucida Console", 12f);
+			_output.Padding = new Padding(10);
+			this.Controls.Add(_output);
 
 			this.Resize += resize;
 			this.resize(null!, null!);
@@ -40,7 +51,9 @@ namespace MSO_P3
 			_grid.Location = new Point(this.ClientSize.Width / 2, 30);
 			_grid.Size = new Size((this.ClientSize.Width / 2) - 10, this.ClientSize.Height - 30);
 			_grid.Invalidate();
-			_commandField.Size = new Size((this.ClientSize.Width / 2) - 10, this.ClientSize.Height / 2);
+			_commandField.Size = new Size((this.ClientSize.Width / 2) - 10, (this.ClientSize.Height / 2) + 20);
+			_output.Location = new Point(10, (this.ClientSize.Height / 2) + 50);
+			_output.Size = new Size((this.ClientSize.Width / 2) - 20, (this.ClientSize.Height / 2) - 63);
 		}
 
 		private void makeFileMenu()
