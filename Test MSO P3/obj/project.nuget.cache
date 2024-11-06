@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "jEMriy74aBM=",
+=======
+  "dgSpecHash": "fu0Y9iVEI9Pk4cR2p3gPTlmvUuyc7t92vNuS6az6BOeStL+Cnm370rgtBpEF4fRIHJK+li10y7zeebH2C+k8Fg==",
+>>>>>>> 3ab4440518a2702bcf25d13c9035c5dfa09d6727
   "success": true,
   "projectFilePath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\Test MSO P3.csproj",
   "expectedPackageFiles": [

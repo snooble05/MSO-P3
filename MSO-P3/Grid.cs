@@ -121,11 +121,15 @@ namespace MSO_P3
 					g.DrawRectangle(Pens.Black, cellSize * i, cellSize * j, cellSize, cellSize);
 				}
 			}
-			g.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
 			foreach (Point cell in _blockedCells)
 			{
 				g.FillRectangle(Brushes.Orange, (cell.X * cellSize) + 1, (cell.Y * cellSize) + 1, cellSize - 1, cellSize - 1);
 			}
+			if(_endPoint != null)
+			{
+				g.FillRectangle(Brushes.SpringGreen, (((Point)_endPoint).X * cellSize) + 1, (((Point)_endPoint).Y * cellSize) + 1, cellSize - 1, cellSize - 1);
+			}
+			g.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
 		}
 	}
 }

@@ -32,7 +32,10 @@ namespace MSO_P3
 
 			_runButton = new Button();
 			_runButton.Text = "Run";
-			_runButton.Size = new Size(100, 60);
+			_runButton.BackColor = Color.Lavender;
+			_runButton.FlatStyle = FlatStyle.Flat;
+			_runButton.FlatAppearance.BorderColor = Color.Black;
+			_runButton.Size = new Size(100, 40);
 			_runButton.Click += runField;
 			this.Controls.Add(_runButton);
 
