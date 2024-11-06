@@ -16,6 +16,7 @@ namespace MSO_P3
 	{
 		StreamReader? reader;
 		String? fileName;
+		Grid? _grid {  get; set; }
 		public TXTStrategy(String filePath)
 		{
 			if (filePath != null)
@@ -59,7 +60,10 @@ namespace MSO_P3
 					case "Repeat":
 						commands.Add(new RepeatCommand(GetRepeatCommands(reader), Convert.ToInt32(addOn)));
 						break;
-					default:
+                    case "RepeatUntil":
+                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Condition.GetCondition(addOn), _grid));
+                        break;
+                    default:
 						break;
 				};
 
@@ -96,7 +100,10 @@ namespace MSO_P3
 					case "Repeat":
 						commands.Add(new RepeatCommand(GetRepeatCommands(reader), Convert.ToInt32(addOn)));
 						break;
-					default: break;
+                    case "RepeatUntil":
+                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Condition.GetCondition(addOn), _grid));
+                        break;
+                    default: break;
 				};
 
 				long currentReaderPosition = reader.BaseStream.Position;
