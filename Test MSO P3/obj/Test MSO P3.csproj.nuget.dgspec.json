@@ -76,15 +76,9 @@
       "restore": {
         "projectUniqueName": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\Test MSO P3.csproj",
         "projectName": "Test MSO P3",
-<<<<<<< HEAD
         "projectPath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\Test MSO P3.csproj",
         "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\obj\\",
-=======
-        "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
-        "packagesPath": "C:\\Users\\jaspe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\obj\\",
->>>>>>> 3ab4440518a2702bcf25d13c9035c5dfa09d6727
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -114,7 +114,6 @@ public class RepeatUntilCommand : ICommand
 {
 	private List<ICommand> _commands;
 	private Func<Character, Grid, bool> _condition;
-	private string _conditionString;
 	private Grid _grid;
 	public List<ICommand> Commands
 	{
@@ -124,7 +123,7 @@ public class RepeatUntilCommand : ICommand
 	{
 		get { return _condition; }
 	}
-
+		
 	public Grid Grid
 	{
 		get { return _grid; }
@@ -147,10 +146,10 @@ public class RepeatUntilCommand : ICommand
                 command.Execute(c);
 				condition = Condition(c, Grid);
 
-				if (condition)
-				{
-					throw new Exception("You have hit a " + _conditionString);
-				}
+				//if (condition)
+				//{
+				//	throw new Exception("You have hit a " + _conditionString);
+				//}
             }
         }
     }

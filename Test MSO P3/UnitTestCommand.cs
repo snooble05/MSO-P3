@@ -1,4 +1,3 @@
-using MSO_P2;
 using MSO_P3;
 using System;
 using System.Collections.Generic;
@@ -123,8 +122,49 @@ namespace Test_MSO_P3
 		}
 		#endregion
 
-		#region Condition Tests
+		#region RepeatUntilCommand tests
+
 		[Fact]
+		public void TestRepeatUntilCommand_SimpleWallAhead()
+		{
+			Character p1 = new Character(new Point(0, 0), Direction.ViewDir.East);
+            List<ICommand> commands = [new MoveCommand(1)];
+
+			List<Point> blockedCells = new List<Point>();
+			blockedCells.Add(new Point(3, 0));
+
+			Grid grid = new Grid(p1, 5, blockedCells, new Point(3, 3));
+			RepeatUntilCommand repeat = new RepeatUntilCommand(commands, Condition.GetCondition("WallAhead"), grid);
+
+			repeat.Execute(p1);
+
+			Assert.Equal(new Point(2,0), p1.position);
+        }
+
+		[Fact]
+        public void TestRepeatUntilCommand_SimpleGridEdge()
+        {
+            Character p1 = new Character(new Point(0, 0), Direction.ViewDir.East);
+            List<ICommand> commands = [new MoveCommand(1)];
+
+            List<Point> blockedCells = new List<Point>();
+            blockedCells.Add(new Point(3, 4));
+
+            Grid grid = new Grid(p1, 5, blockedCells, new Point(3, 3));
+
+            RepeatUntilCommand repeat = new RepeatUntilCommand(commands, Condition.GetCondition("GridEdge"), grid);
+
+			repeat.Execute(p1);
+
+            Assert.Equal(new Point(4, 0), p1.position);
+        }
+
+		
+
+        #endregion
+
+        #region Condition Tests
+        [Fact]
 		public void WallAhead_PlayerInTopLeftCornerNorth()
 		{
 			Character c = new Character(new Point(0, 0), Direction.ViewDir.North);
@@ -179,6 +219,18 @@ namespace Test_MSO_P3
 
 			Assert.False(wallInFront);
 		}
+
+		[Fact]
+		public void ClearedCondition()
+		{
+            Character c = new Character(new Point(0, 0), Direction.ViewDir.East);
+
+            Grid g = new Grid(c, 4, new List<Point>(), new Point(0, 0));
+
+			bool cleared = Condition.IsCleared(c, g);
+
+            Assert.True(cleared);
+        }
 		#endregion
 	}
 }
