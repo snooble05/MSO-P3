@@ -13,3 +13,20 @@ C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\refint\MSO P3
 C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.pdb
 C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\MSO P3.genruntimeconfig.cache
 C:\Users\jaspe\Source\Repos\MSO-P3\MSO-P3\obj\Debug\net8.0-windows\ref\MSO P3.dll
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\bin\Debug\net8.0-windows\MSO P3.exe
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\bin\Debug\net8.0-windows\MSO P3.deps.json
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\bin\Debug\net8.0-windows\MSO P3.runtimeconfig.json
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\bin\Debug\net8.0-windows\MSO P3.dll
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\bin\Debug\net8.0-windows\MSO P3.pdb
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO_P3.Grid.resources
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.csproj.GenerateResource.cache
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.AssemblyInfoInputs.cache
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.AssemblyInfo.cs
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.csproj.CoreCompileInputs.cache
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.sourcelink.json
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.dll
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\refint\MSO P3.dll
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.pdb
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\MSO P3.genruntimeconfig.cache
+C:\Users\Gebruiker\OneDrive\reposSchool\MSOP3Main\MSO-P3\obj\Debug\net8.0-windows\ref\MSO P3.dll

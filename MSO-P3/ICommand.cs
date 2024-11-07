@@ -114,6 +114,8 @@ public class RepeatUntilCommand : ICommand
 {
 	private List<ICommand> _commands;
 	private Func<Character, Grid, bool> _condition;
+	private string _conditionString;
+	private Grid _grid;
 	public List<ICommand> Commands
 	{
 		get { return _commands; }
@@ -122,20 +124,50 @@ public class RepeatUntilCommand : ICommand
 	{
 		get { return _condition; }
 	}
-	public RepeatUntilCommand(List<ICommand> commands, Func<Character, Grid, bool> condition)
+
+	public Grid Grid
+	{
+		get { return _grid; }
+	}
+
+	public RepeatUntilCommand(List<ICommand> commands, Func<Character, Grid, bool> condition, Grid g)
 	{
 		this._commands = commands;
 		this._condition = condition;
+		this._grid = g;
 	}
 	public void Execute(Character c)
 	{
-		//undefined
-	}
+		bool condition = Condition(c, Grid);
+
+        while (!condition)
+        {
+            foreach (ICommand command in _commands)
+            {
+                command.Execute(c);
+				condition = Condition(c, Grid);
+
+				if (condition)
+				{
+					throw new Exception("You have hit a " + _conditionString);
+				}
+            }
+        }
+    }
 }
 
 public static class Condition
 {
-	public static bool wallAhead(Character c, Grid g)
+    public static Func<Character, Grid, bool> GetCondition(string condition)
+    {
+        if (condition == "WallAhead")
+            return wallAhead;
+        else
+            return gridEdge;
+    }
+
+
+    public static bool wallAhead(Character c, Grid g)
 	{
 		switch (c.direction)
 		{
@@ -165,6 +197,18 @@ public static class Condition
 				return c.position.X == 0;
 			default:
 				throw new ArgumentException("Character has an invalid direction");
+		}
+	}
+
+	public static bool IsCleared(Character c, Grid g)
+	{
+		if (c.position == g.EndPoint)
+		{
+			//add clear logic: display message of cleared or not
+			return true;
+		} else
+		{
+			return false;
 		}
 	}
 }
