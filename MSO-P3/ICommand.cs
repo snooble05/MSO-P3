@@ -160,10 +160,15 @@ public static class Condition
 {
     public static Func<Character, Grid, bool> GetCondition(string condition)
     {
-        if (condition == "WallAhead")
-            return wallAhead;
-        else
-            return gridEdge;
+		switch (condition)
+		{
+			case "WallAhead":
+				return wallAhead;
+			case "GridEdge":
+				return gridEdge;
+			default:
+				throw new ArgumentException("Unkown condition given");
+		}
     }
 
 

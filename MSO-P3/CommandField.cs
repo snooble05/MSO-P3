@@ -54,7 +54,7 @@ namespace MSO_P3
 			this.resize(null!, null!);
 		}
 
-		private void runInput(object o, EventArgs ea)
+		public void runInput(object o, EventArgs ea)
 		{
 			_commands.Clear();
 			string[] lines = _commandInput.Text.TrimEnd().Split('\n');
@@ -129,6 +129,12 @@ namespace MSO_P3
 			_runButton.Location = new Point(30, (this.Size.Height / 2) - 70);
 			_output.Location = new Point(0, (this.ClientSize.Height / 2) + 20);
 			_output.Size = new Size(this.Size.Width - 10, (this.ClientSize.Height / 2) - 63);
+		}
+
+		//This function is purely here to enable testing for input
+		public void setInputText(string text)
+		{
+			_commandInput.Text = text;
 		}
 	}
 }
