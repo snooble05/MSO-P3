@@ -80,13 +80,6 @@ namespace MSO_P3
 			gridUI = new GridUI(Character, GridSize, BlockedCells, EndPoint);
 		}
 
-		public void loadGrid(string filePath)
-		{
-			StreamReader reader = new StreamReader(filePath);
-			string gridString = reader.ReadToEnd();
-			setGrid(gridString);
-		}
-
 		private void draw(object o, PaintEventArgs pea)
 		{
 			this.gridUI.draw(pea);
