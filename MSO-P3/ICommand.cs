@@ -63,16 +63,24 @@ public class MoveCommand : ICommand
 		switch (c.direction)
 		{
 			case Direction.ViewDir.North:
-				c.position = new Point(c.position.X, c.position.Y - _steps);
+				Point newPositionNorth = new Point(c.position.X, c.position.Y - _steps);
+				c.path.Add((c.position, newPositionNorth));
+				c.position = newPositionNorth;
 				break;
 			case Direction.ViewDir.East:
-				c.position = new Point(c.position.X + _steps, c.position.Y);
+				Point newPositionEast = new Point(c.position.X + _steps, c.position.Y);
+				c.path.Add((c.position, newPositionEast));
+				c.position = newPositionEast;
 				break;
 			case Direction.ViewDir.South:
-				c.position = new Point(c.position.X, c.position.Y + _steps);
+				Point newPositionSouth = new Point(c.position.X, c.position.Y + _steps);
+				c.path.Add((c.position, newPositionSouth));
+				c.position = newPositionSouth;
 				break;
 			case Direction.ViewDir.West:
-				c.position = new Point(c.position.X - _steps, c.position.Y);
+				Point newPositionWest = new Point(c.position.X - _steps, c.position.Y);
+				c.path.Add((c.position, newPositionWest));
+				c.position = newPositionWest;
 				break;
 		}
 	}

@@ -24,6 +24,7 @@ namespace MSO_P3
 			_menu.BackColor = Color.LightBlue;
 			makeFileMenu();
 			makeExerciseMenu();
+			makeMetricMenu();
 			this.Controls.Add( _menu );
 
 			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { });
@@ -62,6 +63,15 @@ namespace MSO_P3
 			_menu.Items.Add(exerciseMenu);
 		}
 
+		private void makeMetricMenu()
+		{
+			ToolStripMenuItem metricMenu = new ToolStripMenuItem("Metrics");
+			metricMenu.DropDownItems.Add("Number of commands", null, numberOfCommands);
+			metricMenu.DropDownItems.Add("Number of repeat commands", null, numberOfRepeats);
+			metricMenu.DropDownItems.Add("Maximum nesting level", null, nestingLevel);
+			_menu.Items.Add(metricMenu);
+		}
+
 		private void loadTXTFile(object o, EventArgs ea)
 		{
 			OpenFileDialog fileDialog = new OpenFileDialog();
@@ -85,6 +95,44 @@ namespace MSO_P3
 				_grid.setGrid(File.ReadAllText(fileDialog.FileName));
 				_grid.Invalidate();
 				_commandField.clearField(null, EventArgs.Empty);
+			}
+		}
+
+		private void numberOfCommands(object o, EventArgs ea)
+		{
+			if (_commandField.Commands.Count == 0)	//input hasn't been run yet, so Commands is empty
+			{
+				_commandField.Output.Text = "Please run the program before calculating metrics";
+			} else
+			{
+				int noOfCommands = Metric.CalculateNumberOfCommands(_commandField.Commands);
+				_commandField.Output.Text = $"Number of commands: {noOfCommands}";
+			}
+		}
+
+		private void numberOfRepeats(object o, EventArgs ea)
+		{
+			if (_commandField.Commands.Count == 0) //input hasn't been run yet, so Commands is empty
+			{
+				_commandField.Output.Text = "Please run the program before calculating metrics";
+			}
+			else
+			{
+				int noOfRepeats = Metric.CalculateNumberOfRepeats(_commandField.Commands);
+				_commandField.Output.Text = $"Number of repeat commands: {noOfRepeats}";
+			}
+		}
+
+		private void nestingLevel(object o, EventArgs ea)
+		{
+			if (_commandField.Commands.Count == 0) //input hasn't been run yet, so Commands is empty
+			{
+				_commandField.Output.Text = "Please run the program before calculating metrics";
+			}
+			else
+			{
+				int maxNesting = Metric.CalculateNestingLevel(_commandField.Commands);
+				_commandField.Output.Text = $"Maximum nesting level: {maxNesting}";
 			}
 		}
 	}

@@ -236,6 +236,7 @@ namespace MSO_P3
 			Output.Text = "Output:\n";
 			Grid.Character.position = new Point(0, 0);
 			Grid.Character.direction = Direction.ViewDir.East;
+			Grid.Character.path.Clear();
 			Grid.Invalidate();
 		}
 

@@ -21,6 +21,10 @@ namespace MSO_P3
 				{
 					returnValue += CalculateNumberOfCommands(((RepeatCommand)command).Commands);
 				}
+				else if (command is RepeatUntilCommand)
+				{
+					returnValue += CalculateNumberOfCommands(((RepeatUntilCommand)command).Commands);
+				}
 				returnValue++;
 			}
 			return returnValue;
@@ -36,6 +40,11 @@ namespace MSO_P3
 					returnValue++;
 					returnValue += CalculateNumberOfRepeats(((RepeatCommand)command).Commands);
 				}
+				else if (command is RepeatUntilCommand)
+				{
+					returnValue++;
+					returnValue += CalculateNumberOfRepeats(((RepeatUntilCommand)command).Commands);
+				}
 			}
 			return returnValue;
 		}
@@ -47,8 +56,11 @@ namespace MSO_P3
 			{
 				if (command is RepeatCommand)
 				{
-					levels.Add(CalculateNestingLevel(((RepeatCommand)command).Commands, ++i));
-					i--;
+					levels.Add(CalculateNestingLevel(((RepeatCommand)command).Commands, i + 1));
+				}
+				else if (command is RepeatUntilCommand)
+				{
+					levels.Add(CalculateNestingLevel(((RepeatUntilCommand)command).Commands, i + 1));
 				}
 				levels.Add(i);
 			}

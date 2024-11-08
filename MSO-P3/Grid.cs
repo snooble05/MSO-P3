@@ -114,6 +114,8 @@ namespace MSO_P3
 			int drawSize = Math.Min(pea.ClipRectangle.Width, pea.ClipRectangle.Height);
 			drawSize = (drawSize / _gridSize) * _gridSize;
 			int cellSize = drawSize / _gridSize;
+
+			//Drawing the grid
 			g.FillRectangle(Brushes.White, 0, 0, drawSize, drawSize);
 			for(int i = 0; i < this._gridSize; i++)
 			{
@@ -122,15 +124,26 @@ namespace MSO_P3
 					g.DrawRectangle(Pens.Black, cellSize * i, cellSize * j, cellSize, cellSize);
 				}
 			}
+
 			foreach (Point cell in _blockedCells)
 			{
 				g.FillRectangle(Brushes.Orange, (cell.X * cellSize) + 1, (cell.Y * cellSize) + 1, cellSize - 1, cellSize - 1);
 			}
-			if(_endPoint != null)
+
+			if (_endPoint != null)
 			{
 				g.FillRectangle(Brushes.SpringGreen, (((Point)_endPoint).X * cellSize) + 1, (((Point)_endPoint).Y * cellSize) + 1, cellSize - 1, cellSize - 1);
 			}
+
+			foreach ((Point begin, Point end) in _character.path)
+			{
+				g.DrawLine(new Pen(Color.Magenta, 4f), (begin.X * cellSize) + (cellSize / 2), (begin.Y * cellSize) + (cellSize / 2) - 2, (end.X * cellSize) + (cellSize / 2), (end.Y * cellSize) + (cellSize / 2) - 2);
+			}
+
+			//Drawing the player
 			g.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
+
+			//Drawing the direction arrow inside the player
 			Point[] trianglePoints = new Point[3];
 			switch (_character.direction)
 			{

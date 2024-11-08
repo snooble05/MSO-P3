@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 using MSO_P3;
 
 namespace Test_MSO_P3
@@ -14,7 +15,7 @@ namespace Test_MSO_P3
 
 		public InputTestParser()
 		{
-			commandField = new CommandField();
+			commandField = new CommandField(new Grid(new Character(new Point(0,0), Direction.ViewDir.East), 8, new List<Point>() { }));
 		}
 
 		public void setInputText(string text)
@@ -33,14 +34,14 @@ namespace Test_MSO_P3
 		[Fact]
 		public void Input_ValidCommands()
 		{
-			string inputText = "move 10\nturn left\n";
+			string inputText = "move 7\nturn left\n";
 
 			_parser.setInputText(inputText);
 
 			_parser.commandField.runInput(null, EventArgs.Empty);
 
 			Assert.Collection(_parser.commandField.Commands,
-				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(10, moveCommand.Steps); },
+				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(7, moveCommand.Steps); },
 				item => { var turnCommand = Assert.IsType<TurnCommand>(item); Assert.Equal("left", turnCommand.TurningDirection); }
 				);
 		}
@@ -60,14 +61,14 @@ namespace Test_MSO_P3
 		[Fact]
 		public void Input_EmptyLines()
 		{
-			string inputText = "move 10\n\nturn left\n\n";
+			string inputText = "move 7\n\nturn left\n\n";
 
 			_parser.setInputText(inputText);
 
 			_parser.commandField.runInput(null, EventArgs.Empty);
 
 			Assert.Collection(_parser.commandField.Commands,
-				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(10, moveCommand.Steps); },
+				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(7, moveCommand.Steps); },
 				item => { var turnCommand = Assert.IsType<TurnCommand>(item); Assert.Equal("left", turnCommand.TurningDirection); }
 				);
 		}
@@ -75,18 +76,18 @@ namespace Test_MSO_P3
 		[Fact]
 		public void Input_RepeatNesting()
 		{
-			string inputText = "move 10\nrepeat 3 times\n Turn left\n move 4";
+			string inputText = "move 3\nrepeat 2 times\n Turn right\n move 1";
 
 			_parser.setInputText(inputText);
 
 			_parser.commandField.runInput(null, EventArgs.Empty);
 
 			Assert.Collection(_parser.commandField.Commands,
-				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(10, moveCommand.Steps); },
-				item => { var repeatCommand = Assert.IsType<RepeatCommand>(item); Assert.Equal(3, repeatCommand.RepeatAmount);
+				item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(3, moveCommand.Steps); },
+				item => { var repeatCommand = Assert.IsType<RepeatCommand>(item); Assert.Equal(2, repeatCommand.RepeatAmount);
 					Assert.Collection(repeatCommand.Commands,
-						item => { var turnCommand = Assert.IsType<TurnCommand>(item); Assert.Equal("left", turnCommand.TurningDirection); },
-						item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(4, moveCommand.Steps); }
+						item => { var turnCommand = Assert.IsType<TurnCommand>(item); Assert.Equal("right", turnCommand.TurningDirection); },
+						item => { var moveCommand = Assert.IsType<MoveCommand>(item); Assert.Equal(1, moveCommand.Steps); }
 					);
 				}
 			);

@@ -11,17 +11,20 @@ namespace MSO_P3
 	{
 		public Point position { get; set; }
 		public Direction.ViewDir direction { get; set; }
+		public List<(Point, Point)> path { get; set; }
 
 		public Character(Point position, Direction.ViewDir direction)
 		{
 			this.position = position;
 			this.direction = direction;
+			this.path = new List<(Point, Point)> ();
 		}
 
 		public Character(Character c)
 		{
 			this.position = c.position;
 			this.direction = c.direction;
+			this.path = c.path;
 		}
 
 		public void ExecuteCommands(List<ICommand> commands)
