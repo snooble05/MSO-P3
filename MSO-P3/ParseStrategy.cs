@@ -14,18 +14,22 @@ namespace MSO_P3
 
 	public class TXTStrategy : ParseStrategy
 	{
-		StreamReader? reader;
+		StreamReader? _reader;
 		String? fileName;
-		Grid? _grid {  get; set; }
+		Grid? _grid { get; set; }
+
+	    private StreamReader Reader
+		{
+			get { return _reader; }
+		}
 		public TXTStrategy(String filePath)
 		{
-			if (filePath != null)
+			try
 			{
-				reader = new StreamReader(filePath);
-			}
-			else
+				_reader = new StreamReader(filePath);
+			} catch(Exception ex)
 			{
-				reader = null;
+				Console.WriteLine(ex.Message);
 			}
 
 		}
@@ -34,12 +38,12 @@ namespace MSO_P3
 		{
 			List<ICommand> commands = new List<ICommand>();
 
-			if (reader == null)
+			if (Reader == null)
 			{
 				return commands;
 			}
 
-			String line = reader.ReadLine();
+			String line = Reader.ReadLine();
 
 			while (line != null)
 			{
@@ -58,16 +62,17 @@ namespace MSO_P3
 						commands.Add(new TurnCommand(addOn));
 						break;
 					case "Repeat":
-						commands.Add(new RepeatCommand(GetRepeatCommands(reader), Convert.ToInt32(addOn)));
+						commands.Add(new RepeatCommand(GetRepeatCommands(Reader), Convert.ToInt32(addOn)));
 						break;
                     case "RepeatUntil":
-                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Conditions.GetCondition(addOn), _grid));
+
+                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(Reader), Conditions.GetCondition(addOn), _grid));
                         break;
                     default:
 						break;
 				};
 
-				line = reader.ReadLine();
+				line = Reader.ReadLine();
 			}
 
 

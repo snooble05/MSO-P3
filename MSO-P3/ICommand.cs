@@ -123,7 +123,7 @@ public class RepeatUntilCommand : ICommand
 	{
 		get { return _condition; }
 	}
-
+		
 	public Grid Grid
 	{
 		get { return _grid; }
