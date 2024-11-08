@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MSO P3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b1223e375c0be11ee46586b9100986ad326e23b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+515d0400f3e7c43433bf2318343c19c60bf488d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("MSO P3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MSO P3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

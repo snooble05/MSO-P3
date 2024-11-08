@@ -5527,19 +5527,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jaspe\\.nuget\\packages\\": {}
+    "C:\\Users\\Gebruiker\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
+      "projectUniqueName": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\Test MSO P3.csproj",
       "projectName": "Test MSO P3",
-      "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\Test MSO P3.csproj",
-      "packagesPath": "C:\\Users\\jaspe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\obj\\",
+      "projectPath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\Test MSO P3.csproj",
+      "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\jaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5553,8 +5558,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\MSO-P3\\MSO P3.csproj": {
-              "projectPath": "C:\\Users\\jaspe\\source\\repos\\MSO-P3\\MSO-P3\\MSO P3.csproj"
+            "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\MSO-P3\\MSO P3.csproj": {
+              "projectPath": "C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\MSO-P3\\MSO P3.csproj"
             }
           }
         }
@@ -5607,7 +5612,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5616,11 +5621,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-<<<<<<< HEAD
       "message": "Problem reading the cache file C:\\Users\\Gebruiker\\OneDrive\\reposSchool\\MSOP3Main\\Test MSO P3\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-=======
-      "message": "Problem reading the cache file C:\\Users\\jaspe\\source\\repos\\MSO-P3\\Test MSO P3\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
->>>>>>> ad884c60e95f8693163ab3464f782c967117e09c
     }
   ]
 }
