@@ -61,7 +61,7 @@ namespace MSO_P3
 						commands.Add(new RepeatCommand(GetRepeatCommands(reader), Convert.ToInt32(addOn)));
 						break;
                     case "RepeatUntil":
-                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Condition.GetCondition(addOn), _grid));
+                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Conditions.GetCondition(addOn), _grid));
                         break;
                     default:
 						break;
@@ -101,7 +101,7 @@ namespace MSO_P3
 						commands.Add(new RepeatCommand(GetRepeatCommands(reader), Convert.ToInt32(addOn)));
 						break;
                     case "RepeatUntil":
-                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Condition.GetCondition(addOn), _grid));
+                        commands.Add(new RepeatUntilCommand(GetRepeatCommands(reader), Conditions.GetCondition(addOn), _grid));
                         break;
                     default: break;
 				};

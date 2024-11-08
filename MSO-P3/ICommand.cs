@@ -135,6 +135,16 @@ public class RepeatUntilCommand : ICommand
 		this._commands = commands;
 		this._condition = condition;
 		this._grid = g;
+		if (Condition == Conditions.wallAhead)
+		{
+			_conditionString = "a wall";
+		} else if (Condition == Conditions.gridEdge)
+		{
+			_conditionString = "the edge";
+		} else
+		{
+			throw new ArgumentException("Given condition is not a valid condition");
+		}
 	}
 	public void Execute(Character c)
 	{
@@ -149,14 +159,14 @@ public class RepeatUntilCommand : ICommand
 
 				if (condition)
 				{
-					throw new Exception("You have hit a " + _conditionString);
+					throw new Exception("You have hit " + _conditionString);
 				}
             }
         }
     }
 }
 
-public static class Condition
+public static class Conditions
 {
     public static Func<Character, Grid, bool> GetCondition(string condition)
     {

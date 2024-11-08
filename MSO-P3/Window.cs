@@ -26,11 +26,11 @@ namespace MSO_P3
 			makeFileMenu();
 			this.Controls.Add( _menu );
 
-			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { new Point (2, 2)}, new Point(3, 3));
+			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.South), 8, new List<Point>() { new Point (2, 2)}, new Point(3, 3));
 			_grid.MaximumSize = new Size(770, 770);
 			this.Controls.Add(_grid);
 
-			_commandField = new CommandField();
+			_commandField = new CommandField(_grid);
 			_commandField.Location = new Point(10, 30);
 			this.Controls.Add(_commandField);
 

@@ -129,7 +129,7 @@ namespace Test_MSO_P3
 			Character c = new Character(new Point(0, 0), Direction.ViewDir.North);
 			Grid g = new Grid(c, 4, new List<Point>(), null);
 
-			bool wallInFront = Condition.wallAhead(c, g);
+			bool wallInFront = Conditions.wallAhead(c, g);
 
 			Assert.True(wallInFront);
 		}
@@ -140,7 +140,7 @@ namespace Test_MSO_P3
 			Character c = new Character(new Point(0, 0), Direction.ViewDir.East);
 			Grid g = new Grid(c, 4, new List<Point>(), null);
 
-			bool wallInFront = Condition.wallAhead(c, g);
+			bool wallInFront = Conditions.wallAhead(c, g);
 
 			Assert.False(wallInFront);
 		}
@@ -152,7 +152,7 @@ namespace Test_MSO_P3
 			List<Point> blockedCells = new List<Point>() { new Point(2, 1) };
 			Grid g = new Grid(c, 4, blockedCells, null);
 
-			bool wallInFront = Condition.wallAhead(c, g);
+			bool wallInFront = Conditions.wallAhead(c, g);
 
 			Assert.True(wallInFront);
 		}
@@ -163,7 +163,7 @@ namespace Test_MSO_P3
 			Character c = new Character(new Point(3, 3), Direction.ViewDir.South);
 			Grid g = new Grid(c, 4, new List<Point>(), null);
 
-			bool wallInFront = Condition.wallAhead(c, g);
+			bool wallInFront = Conditions.wallAhead(c, g);
 
 			Assert.True(wallInFront);
 		}
@@ -174,7 +174,7 @@ namespace Test_MSO_P3
 			Character c = new Character(new Point(3, 3), Direction.ViewDir.West);
 			Grid g = new Grid(c, 4, new List<Point>(), null);
 
-			bool wallInFront = Condition.wallAhead(c, g);
+			bool wallInFront = Conditions.wallAhead(c, g);
 
 			Assert.False(wallInFront);
 		}

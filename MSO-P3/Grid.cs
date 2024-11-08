@@ -130,6 +130,31 @@ namespace MSO_P3
 				g.FillRectangle(Brushes.SpringGreen, (((Point)_endPoint).X * cellSize) + 1, (((Point)_endPoint).Y * cellSize) + 1, cellSize - 1, cellSize - 1);
 			}
 			g.FillEllipse(Brushes.Blue, (_character.position.X * cellSize) + 1, (_character.position.Y * cellSize) + 1, cellSize - 2, cellSize - 2);
+			Point[] trianglePoints = new Point[3];
+			switch (_character.direction)
+			{
+				case Direction.ViewDir.North:
+					trianglePoints = [new Point((_character.position.X * cellSize) + (cellSize / 2) - (cellSize / 5), (_character.position.Y * cellSize) + (cellSize / 2)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2) + (cellSize / 5), (_character.position.Y * cellSize) + (cellSize / 2)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) - (cellSize / 4))];
+					break;
+				case Direction.ViewDir.East:
+					trianglePoints = [new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) - (cellSize / 5)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) + (cellSize / 5)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2) + (cellSize / 4), (_character.position.Y * cellSize) + (cellSize / 2))];
+					break;
+				case Direction.ViewDir.South:
+					trianglePoints = [new Point((_character.position.X * cellSize) + (cellSize / 2) - (cellSize / 5), (_character.position.Y * cellSize) + (cellSize / 2)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2) + (cellSize / 5), (_character.position.Y * cellSize) + (cellSize / 2)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) + (cellSize / 4))];
+					break;
+				case Direction.ViewDir.West:
+					trianglePoints = [new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) - (cellSize / 5)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2), (_character.position.Y * cellSize) + (cellSize / 2) + (cellSize / 5)),
+									  new Point((_character.position.X * cellSize) + (cellSize / 2) - (cellSize / 4), (_character.position.Y * cellSize) + (cellSize / 2))];
+					break;
+			}
+			g.DrawPolygon(new Pen(Color.Black, 2f), trianglePoints);
 		}
 	}
 }

@@ -16,12 +16,26 @@ namespace MSO_P3
 		private RichTextBox _commandInput;
 		private Button _runButton;
 		private Label _output;
+		private Character _character;
+		private Grid _grid;
 		public List<ICommand> Commands
 		{
 			get { return _commands; }
 		}
+		public Label Output
+		{
+			get { return _output; }
+		}
+		public Character Character 
+		{ 
+			get { return _character; }
+		}
+		public Grid Grid
+		{
+			get { return _grid; }
+		}
 
-		public CommandField()
+		public CommandField(Grid grid)
 		{
 			_commands = new List<ICommand>();
 
@@ -45,10 +59,13 @@ namespace MSO_P3
 			_output = new Label();
 			_output.BackColor = Color.PaleTurquoise;
 			_output.ForeColor = Color.Black;
-			_output.Text = "Output: \n";
+			_output.Text = "Output:\n";
 			_output.Font = new Font("Lucida Console", 12f);
 			_output.Padding = new Padding(10);
 			this.Controls.Add(_output);
+
+			_grid = grid;
+			_character = Grid.Character;
 
 			this.Resize += resize;
 			this.resize(null!, null!);
@@ -57,6 +74,7 @@ namespace MSO_P3
 		public void runInput(object o, EventArgs ea)
 		{
 			_commands.Clear();
+			_output.Text = "Output:\n";
 			string[] lines = _commandInput.Text.TrimEnd().Split('\n');
 			for (int i = 0; i < lines.Length; i++)
 			{
@@ -82,6 +100,27 @@ namespace MSO_P3
 							throw new ArgumentException("Unknown command given");
 					}
 				}
+			}
+			foreach (ICommand command in Commands)
+			{
+				command.Execute(Character);
+				setOutput(command);
+			}
+			_output.Text += $"\nEnd State {Character.position} facing ";
+			switch (Character.direction)
+			{
+				case Direction.ViewDir.North:
+					_output.Text += "north";
+					break;
+				case Direction.ViewDir.East:
+					_output.Text += "east";
+					break;
+				case Direction.ViewDir.South:
+					_output.Text += "south";
+					break;
+				case Direction.ViewDir.West:
+					_output.Text += "west";
+					break;
 			}
 		}
 
@@ -113,7 +152,6 @@ namespace MSO_P3
 					}
 
 					if (i + 1 == remainingLines.Length) break;
-					//Debug.WriteLine(remainingLines[i + 1]);
 					if (!(remainingLines[i + 1].StartsWith(' ') || remainingLines[i + 1].StartsWith('\t')))
 					{
 						break;
@@ -121,6 +159,38 @@ namespace MSO_P3
 				}
 			}
 			return commands;
+		}
+
+		private void setOutput(ICommand command)
+		{
+			if (command is MoveCommand)
+			{
+				_output.Text += $"Move {((MoveCommand)command).Steps} ";
+			}
+			else if (command is TurnCommand)
+			{
+				_output.Text += $"Turn {((TurnCommand)command).TurningDirection} ";
+			}
+			else if (command is RepeatCommand)
+			{
+				for (int i = 0; i < ((RepeatCommand)command).RepeatAmount; i++)
+				{
+					foreach (ICommand repeatedCommand in ((RepeatCommand)command).Commands)
+					{
+						setOutput(repeatedCommand);
+					}
+				}
+			}
+			else if (command is RepeatUntilCommand)
+			{
+				while (!((RepeatUntilCommand)command).Condition(Character, Grid))
+				{
+					foreach(ICommand repeatedCommand in ((RepeatUntilCommand)command).Commands)
+					{
+						setOutput(repeatedCommand);
+					}
+				}
+			}
 		}
 
 		private void resize(object o, EventArgs ea)
