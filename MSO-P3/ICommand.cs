@@ -30,7 +30,7 @@ public class TurnCommand : ICommand
 
 	public void Execute(Character c)
 	{
-		switch (_turningDirection)
+		switch (_turningDirection.ToLower())
 		{
 			case "right":
 				c.direction = (Direction.ViewDir)((int)(c.direction + 1) % 4);
@@ -114,7 +114,6 @@ public class RepeatUntilCommand : ICommand
 {
 	private List<ICommand> _commands;
 	private Func<Character, Grid, bool> _condition;
-	private string _conditionString;
 	private Grid _grid;
 	public List<ICommand> Commands
 	{
@@ -135,16 +134,6 @@ public class RepeatUntilCommand : ICommand
 		this._commands = commands;
 		this._condition = condition;
 		this._grid = g;
-		if (Condition == Conditions.wallAhead)
-		{
-			_conditionString = "a wall";
-		} else if (Condition == Conditions.gridEdge)
-		{
-			_conditionString = "the edge";
-		} else
-		{
-			throw new ArgumentException("Given condition is not a valid condition");
-		}
 	}
 	public void Execute(Character c)
 	{
@@ -155,12 +144,11 @@ public class RepeatUntilCommand : ICommand
             foreach (ICommand command in _commands)
             {
                 command.Execute(c);
-				condition = Condition(c, Grid);
-
-				if (condition)
+				if (c.position.X > Grid.GridSize || c.position.X < 0 || c.position.Y > Grid.GridSize || c.position.Y < 0)
 				{
-					throw new Exception("You have hit " + _conditionString);
+					throw new IndexOutOfRangeException("Character cannot move outside of the grid");
 				}
+				condition = Condition(c, Grid);
             }
         }
     }
@@ -170,11 +158,11 @@ public static class Conditions
 {
     public static Func<Character, Grid, bool> GetCondition(string condition)
     {
-		switch (condition)
+		switch (condition.ToLower())
 		{
-			case "WallAhead":
+			case "wallahead":
 				return wallAhead;
-			case "GridEdge":
+			case "gridedge":
 				return gridEdge;
 			default:
 				throw new ArgumentException("Unkown condition given");
@@ -215,17 +203,10 @@ public static class Conditions
 		}
 	}
 
-	public static bool IsCleared(Character c, Grid g)
-	{
-		if (c.position == g.EndPoint)
-		{
-			//add clear logic: display message of cleared or not
-			return true;
-		} else
-		{
-			return false;
-		}
-	}
+	//public static bool IsCleared(Character c, Grid g)
+	//{
+	//	return (c.position == g.EndPoint);
+	//}
 }
 
 public struct Preset

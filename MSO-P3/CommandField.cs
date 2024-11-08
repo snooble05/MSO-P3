@@ -15,6 +15,7 @@ namespace MSO_P3
 		private List<ICommand> _commands;
 		private RichTextBox _commandInput;
 		private Button _runButton;
+		private Button _clearButton;
 		private Label _output;
 		private Character _character;
 		private Grid _grid;
@@ -56,6 +57,15 @@ namespace MSO_P3
 			_runButton.Click += runInput;
 			this.Controls.Add(_runButton);
 
+			_clearButton = new Button();
+			_clearButton.Text = "Clear";
+			_clearButton.BackColor = Color.Lavender;
+			_clearButton.FlatStyle = FlatStyle.Flat;
+			_clearButton.FlatAppearance.BorderColor = Color.Black;
+			_clearButton.Size = new Size(100, 40);
+			_clearButton.Click += clearField;
+			this.Controls.Add(_clearButton);
+
 			_output = new Label();
 			_output.BackColor = Color.PaleTurquoise;
 			_output.ForeColor = Color.Black;
@@ -96,6 +106,9 @@ namespace MSO_P3
 						case "repeat":
 							Commands.Add(new RepeatCommand(ParseRepeatCommands(lines.Skip(i + 1).ToArray(), 1), Convert.ToInt32(addOn)));
 							break;
+						case "repeatuntil":
+							Commands.Add(new RepeatUntilCommand(ParseRepeatCommands(lines.Skip(i + 1).ToArray(), 1), Conditions.GetCondition(addOn), Grid));
+							break;
 						default:
 							throw new ArgumentException("Unknown command given");
 					}
@@ -104,6 +117,10 @@ namespace MSO_P3
 			foreach (ICommand command in Commands)
 			{
 				command.Execute(Character);
+				if (Character.position.X > Grid.GridSize || Character.position.X < 0 || Character.position.Y > Grid.GridSize || Character.position.Y < 0)
+				{
+					throw new IndexOutOfRangeException("Character cannot move outside of the grid");
+				}
 				setOutput(command);
 			}
 			_output.Text += $"\nEnd State {Character.position} facing ";
@@ -122,6 +139,8 @@ namespace MSO_P3
 					_output.Text += "west";
 					break;
 			}
+			Grid.Invalidate();
+			hasCleared(Character, Grid);
 		}
 
 		private List<ICommand> ParseRepeatCommands(string[] remainingLines, int nestingLevel)
@@ -146,6 +165,9 @@ namespace MSO_P3
 							break;
 						case "repeat":
 							commands.Add(new RepeatCommand(ParseRepeatCommands(remainingLines.Skip(i + 1).ToArray(), nestingLevel + 1), Convert.ToInt32(addOn)));
+							break;
+						case "repeatuntil":
+							commands.Add(new RepeatUntilCommand(ParseRepeatCommands(remainingLines.Skip(i + 1).ToArray(), nestingLevel + 1), Conditions.GetCondition(addOn), Grid));
 							break;
 						default:
 							throw new ArgumentException("Unkown command given");
@@ -183,7 +205,8 @@ namespace MSO_P3
 			}
 			else if (command is RepeatUntilCommand)
 			{
-				while (!((RepeatUntilCommand)command).Condition(Character, Grid))
+				bool condition = ((RepeatUntilCommand)command).Condition(Character, Grid);
+				while (!condition)
 				{
 					foreach(ICommand repeatedCommand in ((RepeatUntilCommand)command).Commands)
 					{
@@ -193,15 +216,41 @@ namespace MSO_P3
 			}
 		}
 
+		public void clearField(object o, EventArgs ea)
+		{
+			_commandInput.Clear();
+			Output.Text = "Output:\n";
+			Grid.Character.position = new Point(0, 0);
+			Grid.Character.direction = Direction.ViewDir.East;
+			Grid.Invalidate();
+		}
+
+		private void hasCleared(Character c, Grid g)
+		{
+			if(c.position == g.EndPoint)
+			{
+				Form clearedPopUp = new Form();
+				clearedPopUp.Size = new Size(300, 150);
+				clearedPopUp.Text = "Exercise clear!";
+				clearedPopUp.BackColor = Color.Azure;
+				Label clearedLabel = new Label();
+				clearedLabel.Size = clearedPopUp.Size;
+				clearedLabel.Text = "You cleared the exercise!";
+				clearedLabel.Font = new Font("Lucida Console", 16f);
+				clearedPopUp.Controls.Add(clearedLabel);
+				clearedPopUp.ShowDialog();
+			}
+		}
+
 		private void resize(object o, EventArgs ea)
 		{
 			_commandInput.Size = new Size(this.Size.Width - 10, (this.Size.Height / 2) - 80);
 			_runButton.Location = new Point(30, (this.Size.Height / 2) - 70);
+			_clearButton.Location = new Point(160, (this.Size.Height / 2) - 70);
 			_output.Location = new Point(0, (this.ClientSize.Height / 2) + 20);
 			_output.Size = new Size(this.Size.Width - 10, (this.ClientSize.Height / 2) - 63);
 		}
 
-		//This function is purely here to enable testing for input
 		public void setInputText(string text)
 		{
 			_commandInput.Text = text;

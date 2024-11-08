@@ -14,7 +14,6 @@ namespace MSO_P3
 		private Grid _grid;
 		private MenuStrip _menu;
 		private CommandField _commandField;
-		private Label _output;
 
 		public Window()
 		{
@@ -24,9 +23,10 @@ namespace MSO_P3
 			_menu = new MenuStrip();
 			_menu.BackColor = Color.LightBlue;
 			makeFileMenu();
+			makeExerciseMenu();
 			this.Controls.Add( _menu );
 
-			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.South), 8, new List<Point>() { new Point (2, 2)}, new Point(3, 3));
+			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { }, new Point(1, 0));
 			_grid.MaximumSize = new Size(770, 770);
 			this.Controls.Add(_grid);
 
@@ -51,10 +51,15 @@ namespace MSO_P3
 			ToolStripMenuItem fileMenu = new ToolStripMenuItem("File");
 			ToolStripMenuItem openStrategyMenu = new ToolStripMenuItem("Load file type:");
 			openStrategyMenu.DropDownItems.Add(".txt", null, loadTXTFile);
-			ToolStripMenuItem exportStrategyMenu = new ToolStripMenuItem("Export to file type:");
-			exportStrategyMenu.DropDownItems.Add(".txt", null, exportTXTFile);
 			fileMenu.DropDownItems.Add(openStrategyMenu);
 			_menu.Items.Add(fileMenu);
+		}
+
+		private void makeExerciseMenu()
+		{
+			ToolStripMenuItem exerciseMenu = new ToolStripMenuItem("Exercise");
+			exerciseMenu.DropDownItems.Add("Load exercise", null, loadExercise);
+			_menu.Items.Add(exerciseMenu);
 		}
 
 		private void loadTXTFile(object o, EventArgs ea)
@@ -62,16 +67,25 @@ namespace MSO_P3
 			OpenFileDialog fileDialog = new OpenFileDialog();
 			fileDialog.Filter = "Textfile (*.txt)|*.txt";
 			fileDialog.Title = "Choose a file...";
-			if(fileDialog.ShowDialog() == DialogResult.OK)
+			if (fileDialog.ShowDialog() == DialogResult.OK)
 			{
 				FileParser parser = new FileParser("txt", fileDialog.FileName);
 				parser.ReadFile();
+				_commandField.setInputText(File.ReadAllText(fileDialog.FileName));
 			}
 		}
 
-		private void exportTXTFile(object o, EventArgs ea)
+		private void loadExercise(object o, EventArgs ea)
 		{
-			//TBA
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Textfile (*.txt)|*.txt";
+			fileDialog.Title = "Choose an exercise...";
+			if (fileDialog.ShowDialog() == DialogResult.OK)
+			{
+				_grid.setGrid(File.ReadAllText(fileDialog.FileName));
+				_grid.Invalidate();
+				_commandField.clearField(null, EventArgs.Empty);
+			}
 		}
 	}
 }

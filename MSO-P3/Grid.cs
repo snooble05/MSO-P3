@@ -59,7 +59,7 @@ namespace MSO_P3
 
 		public void setGrid(string input)
 		{
-			string[] gridString = input.Split("\n");
+			string[] gridString = input.Split("\r\n");
 			_gridSize = gridString.Length;
 			for (int i = 0; i < _gridSize; i++)
 			{
@@ -77,6 +77,7 @@ namespace MSO_P3
 				}
 			}
 			Character = new Character(new Point(0, 0), Direction.ViewDir.East);
+			gridUI = new GridUI(Character, GridSize, BlockedCells, EndPoint);
 		}
 
 		public void loadGrid(string filePath)
