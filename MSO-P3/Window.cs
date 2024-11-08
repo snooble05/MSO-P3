@@ -26,7 +26,7 @@ namespace MSO_P3
 			makeExerciseMenu();
 			this.Controls.Add( _menu );
 
-			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { }, new Point(1, 0));
+			_grid = new Grid(new Character(new Point(0, 0), Direction.ViewDir.East), 8, new List<Point>() { });
 			_grid.MaximumSize = new Size(770, 770);
 			this.Controls.Add(_grid);
 

@@ -19,6 +19,7 @@ namespace MSO_P3
 		private Label _output;
 		private Character _character;
 		private Grid _grid;
+		private List<string> _outputStrings;
 		public List<ICommand> Commands
 		{
 			get { return _commands; }
@@ -77,6 +78,8 @@ namespace MSO_P3
 			_grid = grid;
 			_character = Grid.Character;
 
+			_outputStrings = new List<string>();
+
 			this.Resize += resize;
 			this.resize(null!, null!);
 		}
@@ -85,6 +88,7 @@ namespace MSO_P3
 		{
 			_commands.Clear();
 			_output.Text = "Output:\n";
+			_outputStrings.Clear();
 			string[] lines = _commandInput.Text.TrimEnd().Split('\n');
 			for (int i = 0; i < lines.Length; i++)
 			{
@@ -114,15 +118,23 @@ namespace MSO_P3
 					}
 				}
 			}
+
+			Character tempCharacter = new Character(Character);
+
 			foreach (ICommand command in Commands)
 			{
+				setOutput(command, tempCharacter);
 				command.Execute(Character);
 				if (Character.position.X > Grid.GridSize || Character.position.X < 0 || Character.position.Y > Grid.GridSize || Character.position.Y < 0)
 				{
 					throw new IndexOutOfRangeException("Character cannot move outside of the grid");
 				}
-				setOutput(command);
+				if (Grid.BlockedCells.Contains(Character.position))
+				{
+					throw new IndexOutOfRangeException("Character cannot move onto a blocked cell");
+				}
 			}
+			_output.Text += string.Join(" ", _outputStrings);
 			_output.Text += $"\nEnd State {Character.position} facing ";
 			switch (Character.direction)
 			{
@@ -183,15 +195,15 @@ namespace MSO_P3
 			return commands;
 		}
 
-		private void setOutput(ICommand command)
+		private void setOutput(ICommand command, Character tempCharacter)
 		{
 			if (command is MoveCommand)
 			{
-				_output.Text += $"Move {((MoveCommand)command).Steps} ";
+				_outputStrings.Add($"Move {((MoveCommand)command).Steps}");
 			}
 			else if (command is TurnCommand)
 			{
-				_output.Text += $"Turn {((TurnCommand)command).TurningDirection} ";
+				_outputStrings.Add($"Turn {((TurnCommand)command).TurningDirection} ");
 			}
 			else if (command is RepeatCommand)
 			{
@@ -199,19 +211,21 @@ namespace MSO_P3
 				{
 					foreach (ICommand repeatedCommand in ((RepeatCommand)command).Commands)
 					{
-						setOutput(repeatedCommand);
+						setOutput(repeatedCommand, tempCharacter);
 					}
 				}
 			}
 			else if (command is RepeatUntilCommand)
 			{
-				bool condition = ((RepeatUntilCommand)command).Condition(Character, Grid);
+				bool condition = ((RepeatUntilCommand)command).Condition(tempCharacter, Grid);
 				while (!condition)
 				{
 					foreach(ICommand repeatedCommand in ((RepeatUntilCommand)command).Commands)
 					{
-						setOutput(repeatedCommand);
+						repeatedCommand.Execute(tempCharacter);
+						setOutput(repeatedCommand, tempCharacter);
 					}
+					condition = ((RepeatUntilCommand)command).Condition(tempCharacter, Grid);
 				}
 			}
 		}

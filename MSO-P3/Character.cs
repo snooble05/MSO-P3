@@ -18,6 +18,12 @@ namespace MSO_P3
 			this.direction = direction;
 		}
 
+		public Character(Character c)
+		{
+			this.position = c.position;
+			this.direction = c.direction;
+		}
+
 		public void ExecuteCommands(List<ICommand> commands)
 		{
 			foreach (ICommand command in commands)
